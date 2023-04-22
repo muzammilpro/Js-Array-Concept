@@ -38,6 +38,21 @@ function findUser() {
     document.getElementById("searchResult").innerHTML = result
 }
 
+
+
+// create an empty array to store values
+var myArray = [];
+
+// get the value from the user
+var userInput = document.getElementById("searchInput").value;
+
+// add the value to the array
+myArray.push(userInput);
+
+// display the array values
+console.log(myArray);
+
+
 function printStudents() {
     console.log('====================================');
     console.log(students);
