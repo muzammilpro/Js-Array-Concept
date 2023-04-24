@@ -12,7 +12,7 @@
 // for (var index = 0; index < students.length; index++) {
 //     const student = students[index];
 //     console.log("student", student);
-    
+
 // }
 
 // write a js program, that input name from user, and check is it exits in array or not?
