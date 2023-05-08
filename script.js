@@ -17,7 +17,7 @@ function out() {
 function anyFucntionName() {
     var result = confirm("Do you want to redirect ?");
     if (result == true) {
-        window.location = "https://www.techloset.com/blog"
+        window.location = "#"
     }
     // window.location = "https://www.techloset.com/blog"
 }
