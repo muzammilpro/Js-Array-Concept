@@ -1,34 +1,50 @@
+function checkPasswordStrength() {
+    var password = document.getElementById("passwordInput").value;
 
-var userData = [];
+    // Define the criteria for password strength
+    var minLength = 8;
+    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    var hasUpperCase = /[A-Z]/.test(password);
+    var hasLowerCase = /[a-z]/.test(password);
+    var hasNumber = /\d/.test(password);
 
-function Submit() {
-    var username = document.getElementById("Name").value;
-    var useremail = document.getElementById("Email").value;
-    var userPhoneNumber = document.getElementById("phoneNumber").value;
-
-    var inputData = {
-        name: username,
-        email: useremail,
-        phone: userPhoneNumber
-    };
-    userData.push(inputData);
-    displayData();
-}
-
-function displayData() {
-    var toDisplay = "toDisplay";
-    var displayDataHTML = "";
-
-    for (let index = 0; index < userData.length; index++) {
-        var currentData = userData[index];
-        displayDataHTML += `
-                    <div>
-                        <h1>Name: ${currentData.name}</h1>
-                        <p>Email: ${currentData.email}</p>
-                        <span>Phone: ${currentData.phone}</span>
-                    </div>
-                `;
+    // Calculate the strength score based on the criteria
+    var strengthScore = 0;
+    if (password.length >= minLength) {
+        strengthScore += 1;
+    }
+    if (hasSpecialChar) {
+        strengthScore += 1;
+    }
+    if (hasUpperCase) {
+        strengthScore += 1;
+    }
+    if (hasLowerCase) {
+        strengthScore += 1;
+    }
+    if (hasNumber) {
+        strengthScore += 1;
     }
 
-    document.getElementById(toDisplay).innerHTML = displayDataHTML;
+    // Determine the strength rating based on the strength score
+    var strengthRating;
+    switch (strengthScore) {
+        case 0:
+            strengthRating = "Weak";
+            break;
+        case 1:
+            strengthRating = "Medium";
+            break;
+        case 2:
+            strengthRating = "Strong";
+            break;
+        case 3:
+        case 4:
+        case 5:
+            strengthRating = "Very Strong";
+            break;
+    }
+
+    // Display the strength rating on the webpage
+    document.getElementById("strengthResult").innerHTML = "Strength: " + strengthRating;
 }
