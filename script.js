@@ -48,3 +48,31 @@ function checkPasswordStrength() {
     // Display the strength rating on the webpage
     document.getElementById("strengthResult").innerHTML = "Strength: " + strengthRating;
 }
+
+
+
+
+function calculateRemainder(dividend, divisor) {
+  if (divisor === 0) {
+    // Check if divisor is zero, return NaN
+    return NaN;
+  }
+  
+  // Calculate the quotient using Math.floor
+  var quotient = Math.floor(dividend / divisor);
+  
+  // Calculate the product of divisor and quotient
+  var product = divisor * quotient;
+  
+  // Calculate the remainder
+  var remainder = dividend - product;
+  
+  return remainder;
+}
+
+// Example usage
+var dividend = 17;
+var divisor = 4;
+
+var remainder = calculateRemainder(dividend, divisor);
+console.log("Remainder:", remainder);
