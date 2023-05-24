@@ -1,78 +1,36 @@
-function checkPasswordStrength() {
-    var password = document.getElementById("passwordInput").value;
+function startCountdown() {
+    const hoursInput = document.getElementById('hours');
+    const minutesInput = document.getElementById('minutes');
+    const secondsInput = document.getElementById('seconds');
 
-    // Define the criteria for password strength
-    var minLength = 8;
-    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    var hasUpperCase = /[A-Z]/.test(password);
-    var hasLowerCase = /[a-z]/.test(password);
-    var hasNumber = /\d/.test(password);
+    const hours = parseInt(hoursInput.value);
+    const minutes = parseInt(minutesInput.value);
+    const seconds = parseInt(secondsInput.value);
 
-    // Calculate the strength score based on the criteria
-    var strengthScore = 0;
-    if (password.length >= minLength) {
-        strengthScore += 1;
-    }
-    if (hasSpecialChar) {
-        strengthScore += 1;
-    }
-    if (hasUpperCase) {
-        strengthScore += 1;
-    }
-    if (hasLowerCase) {
-        strengthScore += 1;
-    }
-    if (hasNumber) {
-        strengthScore += 1;
-    }
+    const countdownTime = (hours * 3600) + (minutes * 60) + seconds;
 
-    // Determine the strength rating based on the strength score
-    var strengthRating;
-    switch (strengthScore) {
-        case 0:
-            strengthRating = "Weak";
-            break;
-        case 1:
-            strengthRating = "Medium";
-            break;
-        case 2:
-            strengthRating = "Strong";
-            break;
-        case 3:
-        case 4:
-        case 5:
-            strengthRating = "Very Strong";
-            break;
-    }
+    let remainingTime = countdownTime;
 
-    // Display the strength rating on the webpage
-    document.getElementById("strengthResult").innerHTML = "Strength: " + strengthRating;
-}
+    const countdownDisplay = document.getElementById('countdownDisplay');
+    countdownDisplay.innerHTML = formatTime(remainingTime);
 
+    const countdownInterval = setInterval(() => {
+      remainingTime--;
 
-
-
-function calculateRemainder(dividend, divisor) {
-  if (divisor === 0) {
-    // Check if divisor is zero, return NaN
-    return NaN;
+      if (remainingTime <= 0) {
+        clearInterval(countdownInterval);
+        countdownDisplay.innerHTML = "Countdown complete!";
+        alert("Countdown complete!");
+      } else {
+        countdownDisplay.innerHTML = formatTime(remainingTime);
+      }
+    }, 1000);
   }
-  
-  // Calculate the quotient using Math.floor
-  var quotient = Math.floor(dividend / divisor);
-  
-  // Calculate the product of divisor and quotient
-  var product = divisor * quotient;
-  
-  // Calculate the remainder
-  var remainder = dividend - product;
-  
-  return remainder;
-}
 
-// Example usage
-var dividend = 17;
-var divisor = 4;
+  function formatTime(time) {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
 
-var remainder = calculateRemainder(dividend, divisor);
-console.log("Remainder:", remainder);
+    return `${hours.toString().padStart(2, '0')} : ${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`;
+  }
