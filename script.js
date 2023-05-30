@@ -29,7 +29,7 @@
 //     ~ - 126]
 
 // input array
-var passwords = ["test", "test@1214", "newPass2422@", "testPassword23", "examPle#242"]
+// var passwords = ["test", "test@1214", "newPass2422@", "testPassword23", "examPle#242"]
 // output array
 // var newpasswords = passwords.map((element) => {
 //     var isCapital = false
@@ -56,37 +56,70 @@ var passwords = ["test", "test@1214", "newPass2422@", "testPassword23", "examPle
 // })
 
 
-var newpasswords = passwords.map((element) => {
-    if (element.match(`((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})`)) {
-        return true
+// var newpasswords = passwords.map((element) => {
+//     if (element.match(`((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})`)) {
+//         return true
+//     }
+//     return false
+// })
+// console.log('====================================');
+// console.log("newpasswords", newpasswords);
+// console.log('====================================');
+
+
+
+// var  names = ["naveed", "alisadf", "zainasdf"]
+
+// var isNames = names.every((element)=>{
+//     console.log('====================================');
+//     console.log("element", element);
+//     console.log('====================================');
+//     if (element.length > 5) {
+//         return true
+//     }
+// })
+
+// console.log('====================================');
+// console.log("isNames", isNames);
+// console.log('====================================');
+
+
+
+
+var passwordArray =["test", "test@1214", "newPass2422@", "testPassword23", "examPle#242"]
+var answerArray = []
+
+function passwordChecker() {
+    var isCapital = false
+    var isSmall = false
+    var isNumber = false
+    var checker = false
+
+    for (let index = 0; index < passwordArray.length; index++) {
+        var element = passwordArray[index];
+        if(element > 'a' && element < 'z'){
+            isSmall = true
+        }
+        if(element > 'A' && element < 'Z'){
+            isCapital = true
+        }
+        if (element.match(`0-9`)) {
+            isNumber = true
+        }
+
+        if (isSmall && isCapital && isNumber && element.length >= 8) {
+            checker = true
+        }
+         else {
+            checker = false
+        }
+
+
+        answerArray.push(checker)
+        
     }
-    return false
-})
-console.log('====================================');
-console.log("newpasswords", newpasswords);
-console.log('====================================');
-
-
-
-var  names = ["naveed", "alisadf", "zainasdf"]
-
-var isNames = names.every((element)=>{
-    console.log('====================================');
-    console.log("element", element);
-    console.log('====================================');
-    if (element.length > 5) {
-        return true
-    }
-})
-
-console.log('====================================');
-console.log("isNames", isNames);
-console.log('====================================');
-
-
-console.log('====================================');
-console.log("isNames", isNames);
-console.log('====================================');
-
-
-
+    
+    
+}
+passwordChecker()
+console.log(answerArray);
