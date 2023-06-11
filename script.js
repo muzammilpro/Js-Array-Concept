@@ -1,123 +1,51 @@
-// var specialChar = [33,34,35, 36
-//     % - 37
-//     & - 38
-//     ' - 39
-//     ( - 40
-//     ) - 41
-//     * - 42
-//     + - 43
-//     , - 44
-//     - - 45
-//     . - 46
-//     / - 47
-//     : - 58
-//     ; - 59
-//     < - 60
-//     = - 61
-//     > - 62
-//     ? - 63
-//     @ - 64
-//     [ - 91
-//     \ - 92
-//     ] - 93
-//     ^ - 94
-//     _ - 95
-//     ` - 96
-//     { - 123
-//     | - 124
-//     } - 125
-//     ~ - 126]
+// Prompt user for input
+var name = prompt("Enter your full name (first and last name):");
+var email = prompt("Enter your email address:");
+var emailCountryCode = prompt("Enter your email country code (should be 'PK'):");
+var state = prompt("Enter your state (should be either Punjab or SVGAnimatedLength):");
+var bio = prompt("Enter your bio (should be more than 50 characters):");
+var cnic = prompt("Enter your CNIC (should be exactly 13 characters):");
 
-// input array
-var passwords = ["test", "test@1214", "newPass2422@", "testPassword23", "examPle#242"]
-// output array
-// var newpasswords = passwords.map((element) => {
-//     var isCapital = false
-//     var isSmall = false
-//     var isSpecial = false
-//     for (let index = 0; index < element.length; index++) {
-//         const char = element[index];
-//         if (char <= 'z' && char >= 'a') {
-//             isSmall = true
-//         }
+// Validate user input
+var isValid = true;
+var errors = [];
 
-//         if (char <= 'Z' && char >= 'A') {
-//             isCapital = true
-//         }
-//         if (char.charCodeAt() >= 33 && char.charCodeAt() <= 47 || char.charCodeAt() >= 58 && char.charCodeAt() <= 64 || char.charCodeAt() >= 91 && char.charCodeAt() < 96) {
-//             isSpecial = true
-//         }
-//     }
+if (!name.includes(" ")) {
+  isValid = false;
+  errors.push("Name should include both first and last name.");
+}
 
-//     if (isSpecial && isCapital && isSmall && element.length > 8) {
-//         return true
-//     }
-//     return false
-// })
+if (!email.includes("@") || !email.includes(".")) {
+  isValid = false;
+  errors.push("Email should be valid.");
+}
 
+if (emailCountryCode !== "PK") {
+  isValid = false;
+  errors.push("Email country code should be 'PK'.");
+}
 
-var newpasswords = passwords.map((element) => {
-    if (element.match(`((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})`)) {
-        return true
-    }
-    return false
-})
-console.log('====================================');
-console.log("newpasswords", newpasswords);
-console.log('====================================');
+if (state !== "Punjab" && state !== "SVGAnimatedLength") {
+  isValid = false;
+  errors.push("State should be either Punjab or SVGAnimatedLength.");
+}
 
+if (bio.length <= 50) {
+  isValid = false;
+  errors.push("Bio should be more than 50 characters.");
+}
 
+if (cnic.length !== 13) {
+  isValid = false;
+  errors.push("CNIC should be exactly 13 characters.");
+}
 
-var  names = ["naveed", "alisadf", "zainasdf"]
-
-var isNames = names.every((element)=>{
-    console.log('====================================');
-    console.log("element", element);
-    console.log('====================================');
-    if (element.length > 5) {
-        return true
-    }
-})
-
-console.log('====================================');
-console.log("isNames", isNames);
-console.log('====================================');
-
-
-
-console.log('====================================');
-console.log("isNames", isNames);
-console.log('====================================');
-
-// var specialChar = [33,34,35, 36
-//     % - 37
-//     & - 38
-//     ' - 39
-//     ( - 40
-//     ) - 41
-//     * - 42
-//     + - 43
-//     , - 44
-//     - - 45
-//     . - 46
-//     / - 47
-//     : - 58
-//     ; - 59
-//     < - 60
-//     = - 61
-//     > - 62
-//     ? - 63
-//     @ - 64
-//     [ - 91
-//     \ - 92
-//     ] - 93
-//     ^ - 94
-//     _ - 95
-//     ` - 96
-//     { - 123
-//     | - 124
-//     } - 125
-//     ~ - 126]
-
-
-
+// Display validation result
+if (isValid) {
+  console.log("Input is valid.");
+} else {
+  console.log("Input is invalid. Errors:");
+  for (var i = 0; i < errors.length; i++) {
+    console.log("- " + errors[i]);
+  }
+}
