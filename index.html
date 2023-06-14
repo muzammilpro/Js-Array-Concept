@@ -1,16 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Experimental Js</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-<div class="container outer">
-  <div class="container inner">
-
-  </div>
-
+<body>
+  <div>
+    <label for="userName">User Name:</label>
+    <input type="text" id="userName" placeholder="Enter Your Name"><br>
+    <label for="userEmail">User Email:</label>
+    <input type="text" id="userEmail" placeholder="Enter Your Email"><br>
+    <label for="userCountryCode">User country Code:</label>
+    <input type="text" id="userCountryCode" placeholder="Enter Your Country Code"><br>
+    <label for="userState">User State:</label>
+    <input type="text" id="userState" placeholder="Enter Your State"><br>
+    <label for="userBio">User Bio:</label>
+    <input type="text" id="userBio" placeholder="Enter Your Bio"><br>
+    <label for="userCnic">User CNIC:</label>
+    <input type="text" id="userCnic" placeholder="Enter Your CNIC"><br>
+    <button onclick="formValidation()">Submit</button>
 </div>
 
+<script>
+    function formValidation() {
+        var userName = document.getElementById("userName").value;
+        var userEmail = document.getElementById("userEmail").value;
+        var userCountryCode = document.getElementById("userCountryCode").value;
+        var userState = document.getElementById("userState").value;
+        var userBio = document.getElementById("userBio").value;
+        var userCnic = document.getElementById("userCnic").value;
 
- <script src="./script.js"></script>
+        var isValid = true;
+        var errors = [];
+
+        if (!userName.includes(" ")) {
+            isValid = false;
+            errors.push("Name should include both first and last name.");
+        }
+
+        if (!userEmail.includes("@") || !userEmail.includes(".")) {
+            isValid = false;
+            errors.push("Email should be valid.");
+        }
+
+        if (userCountryCode !== "PK") {
+            isValid = false;
+            errors.push("Country code should be 'PK'.");
+        }
+
+        if (userState !== "Punjab" && userState !== "SVGAnimatedLength") {
+            isValid = false;
+            errors.push("State should be either Punjab or SVGAnimatedLength.");
+        }
+
+        if (userBio.length <= 50) {
+            isValid = false;
+            errors.push("Bio should be more than 50 characters.");
+        }
+
+        if (userCnic.length !== 13) {
+            isValid = false;
+            errors.push("CNIC should be exactly 13 characters.");
+        }
+
+        if (isValid) {
+            // Input is valid - perform further actions here
+            console.log("Input is valid.");
+        } else {
+            // Input is invalid - display error messages
+            console.log("Input is invalid. Errors:");
+            for (var i = 0; i < errors.length; i++) {
+                console.log("- " + errors[i]);
+            }
+        }
+    }
+</script>
+
 </body>
 </html>
